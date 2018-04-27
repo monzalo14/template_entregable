@@ -1,10 +1,10 @@
 %%---------------------------------------------------
 %% BASED ON: http://netcommons.eu/
-%% Edited by David Palma, SINet: https://sinet.item.ntnu.no
+%% Edited by David Palma, SEDESOLab: https://sinet.item.ntnu.no
 %%---------------------------------------------------
 %\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{SINet}
-\LoadClass[a4paper,twoside,final,10pt,headings=small]{scrreprt}
+\ProvidesClass{SEDESOLab}
+\LoadClass[a4paper,twoside,final,12pt,headings=small]{scrreprt}
 % --------------------------------------------
 % Load packages
 % --------------------------------------------
@@ -35,19 +35,20 @@
 \usepackage{lastpage}
 \usetikzlibrary{calc}
 % Color Links
-\usepackage[pdftex,hyperfigures,hyperindex,bookmarksnumbered,colorlinks, bookmarks, breaklinks, linktocpage,citecolor=blue,urlcolor=blue,linkcolor=black,pdftitle={SINet},pdfauthor={SINet}]{hyperref}
+\usepackage[pdftex,hyperfigures,hyperindex,bookmarksnumbered,colorlinks, bookmarks, breaklinks, linktocpage,citecolor=blue,urlcolor=blue,linkcolor=black,pdftitle={SEDESOLab},pdfauthor={SEDESOLab}]{hyperref}
 \usepackage{graphicx}
 \usepackage[a4paper,margin=2cm,heightrounded]{geometry}
 \graphicspath{{images/}}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
-\renewcommand{\UrlFont}{\small}
+\renewcommand{\UrlFont}{\scriptsize}
 
 %%--Set the section number depth.
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{4}
 \setcounter{page}{2}
+\setstretch{1.7}
 
-\bibliographystyle{IEEEtran}
+\bibliographystyle{plain}
 \sloppy
 %%--------------------------------------------
 %%-- Definition and Quotation commands.

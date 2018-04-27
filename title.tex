@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{images/}}
 
-\newcommand{\MyName}{Ollin Demian Langle Chimal}
+\newcommand{\MyName}{Mónica Zamudio López}
 \newcommand{\Institution}{Laboratorio de Datos, SEDESOL}
 \newcommand{\DelTitle}{Recolección y limpieza de información}
 \newcommand{\DelNumber}{1}
@@ -29,7 +29,7 @@
 
 \begin{center}
 SEDESOL 2018
-\vspace{2cm}
+\vspace{0.1cm}
 
   \begin{center}
 
@@ -51,19 +51,19 @@ SEDESOL 2018
   \vspace{2mm}
 
   \end{center}
-  \vspace{1cm}
-  {\Large Titulo del projecto: USO DE DATOS MASIVOS PARA LA EFICIENCIA DEL ESTADO Y LA INTEGRACIÓN REGIONAL\\}
+  \vspace{0.3cm}
+  {\Large Título del proyecto: USO DE DATOS MASIVOS PARA LA EFICIENCIA DEL ESTADO Y LA INTEGRACIÓN REGIONAL\\}
     {\large Clave: \Contrato}\\
-  \vspace{0.6cm}
-  \Large Puesto: Científico de Datos Senior\\
-  \vspace{2cm}
+  \vspace{0.5cm}
+  \Large Puesto: Científico de Datos Junior\\
+  \vspace{1.0cm}
 
   \begin{spacing}{2.5}
     \textbf{\Huge \DelTitle}\\\vspace{10mm}
     \textbf{\Large Entregable número: \DelNumber} \\\vspace{10mm}
   \end{spacing}
 
-  \vspace*{\fill}
+  % \vspace*{\fill}
 
   %just to avoid warning :)
   \newcommand\undefcolumntype[1]{\expandafter\let\csname NC@find@#1\endcsname\relax}
@@ -85,16 +85,19 @@ SEDESOL 2018
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Second Page
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setlength{\headheight}{1cm}
+\setlength{\headheight}{0.7cm}
 \setlength{\footskip}{18mm}
 \addtolength{\textheight}{-\footskip}
 \pagestyle{empty}
 
-\begin{flushleft}
-  \begin{tabular}{ll}
-    \textbf{Acrónimo del projecto:}       &   Estimación de Ingreso \\
-    \textbf{Nombre completo del proyecto:}    &   USO DE DATOS MASIVOS \\PARA LA EFICIENCIA DEL ESTADO Y LA INTEGRACIÓN REGIONAL\\
+\begin{flushright}
+    \begin{tabular}{lp{11cm}}
+    \textbf{Acrónimo del proyecto:}       &   Estimación de Ingreso \\
+    \hline
+    \textbf{Nombre completo del proyecto:} & USO DE DATOS MASIVOS PARA LA EFICIENCIA DEL ESTADO Y LA INTEGRACIÓN REGIONAL\\
+    \hline
     \textbf{Referencia:}                  &   ATN/OC 15822-RG\\
+    \hline
 %    \textbf{Topic:}                 &   ICT-10-2015 \\
 %    \textbf{Type of Action:}        &   RIA \\
     % \textbf{Grant Number:}          &   699924 \\
@@ -108,7 +111,7 @@ SEDESOL 2018
 \newcommand\Tstrut{\rule{0pt}{2.6ex}}         % = `top' strut
 \newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}   % = `bottom' strut
 
-  \begin{tabular}{|l|p{125mm}|}\hline
+  \begin{tabular}{|l|p{115mm}|}\hline
     % \Tstrut\Bstrut Editor:& XXX, XXX-Institution\\\hline
     \Tstrut\Bstrut Tipo de Entregable:& Reporte (R) \\\hline
     % \Tstrut\Bstrut Dissemination level:& Public (PU)\\\hline
@@ -129,19 +132,12 @@ SEDESOL 2018
 		ZZZ - Institution\\
 	\end{tabular}\\\hline
   \end{tabular}
-\end{flushleft}
+\end{flushright}
 
 \section*{Resumen}
-Provide a short description, highlight the topics considered in the deliverable.
-
-The abstract must be self-contained, without abbreviations, footnotes, or references. It should be a microcosm of the full deliverable.
-
-The abstract must be between 150-250 words. Be sure that you adhere to these limits.
-
-The abstract must be written as one paragraph, and should not contain displayed mathematical equations or tabular material.
-
-The abstract should include three or four different keywords or phrases, as this will help readers to find it. It is important to avoid over-repetition of such phrases as this can result in a page being rejected by search engines.
-
-Ensure that your abstract reads well and is grammatically correct.
+La Secretaría de Desarrollo Social (SEDESOL) es una entidad del gobierno mexicano destinada al apoyo de la población para el mejoramiento de sus condiciones de vida.\\
+Un problema importante para SEDESOL es la correcta distribución de sus recursos por lo que es importante contar con una metodología que permita la generación de una focalización correcta para así poder ayudar a aquellos que realmente están en condiciones vulnerables.\\
+En este reporte se detalla el proceso de obtención e integración de distintas fuentes de información que puedes ser de utilidad en dicho proceso, ya sea de manera directa o como auxiliar de las primeras.\\
+Las partes fundamentales para la realización de esto son, el estudio y evaluación de información generada por la misma Secretaría como lo es el Cuestionario Único de Información Socioeconómica (CUIS) y el Sistema de Focalización de Desarrollo (SIFODE), además de datos auxiliares que permitan la georreferenciación como archivos poligonales de carreteras y caminos. Para esto es importante llevar a cabo un sistema semiautomatizado para almacenar de manera adecuada todas las fuentes de datos para su futuro uso así como la información de los orígenes y naturaleza de las mismas.
 \clearpage
 

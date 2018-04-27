@@ -16,7 +16,7 @@ src_extensions=.tex .ltx .latex .dtx .ins
 MakeIndex=
 QuickBuild=
 
-[document-settings,item:SINet.cls]
+[document-settings,item:SEDESOLab.cls]
 Bookmarks=
 Encoding=UTF-8
 Highlighting=LaTeX
@@ -65,7 +65,7 @@ Highlighting=LaTeX
 Indentation Mode=normal
 Mode=LaTeX
 
-[item:SINet.cls]
+[item:SEDESOLab.cls]
 archive=true
 column=0
 encoding=UTF-8
@@ -145,7 +145,7 @@ mode=LaTeX
 open=false
 order=2
 
-[view-settings,view=0,item:SINet.cls]
+[view-settings,view=0,item:SEDESOLab.cls]
 CursorColumn=0
 CursorLine=0
 JumpList=
