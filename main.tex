@@ -8,18 +8,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage{siunitx}
 \usepackage{subcaption}
+\usepackage{hyperref}
 
 \usepackage{csquotes}
 \usepackage{dirtytalk}
 \usepackage{supertabular}
 \usepackage[section]{placeins}
-
-\usepackage[
-    type={CC},
-    modifier={by-sa},
-    version={3.0},
-    imagewidth={10em},
-]{doclicense}
 
 \newcommand{\img}{./img}
 \newcommand{\bib}{./bib}
@@ -61,7 +55,7 @@
 % Chapter
 % ------------------------
 
-\clearscrheadfoot 
+\clearscrheadfoot
 
 % uncomment for book mode
 %\lofoot{\footerlogo}
@@ -95,8 +89,9 @@
 \pagestyle{scrheadings}
 
 \input{chapters/introduction}
-\input{chapters/chapter-XXX}
-\input{chapters/conclusions}
+\input{chapters/fuentes.tex}
+\input{chapters/ingesta.tex}
+\input{chapters/conclusions.tex}
 
 \bibliography{bib/references}
 \appendix
