@@ -1,0 +1,13 @@
+cuaps_componentes.sh
+cuaps_criterios.sh
+cuaps_programas.sh
+cuis_39_9.sh
+cuis_historico_domicilios.sh
+cuis_historico_encuesta.sh
+cuis_historico_ids.sh
+cuis_historico_integrante.sh
+cuis_historico_persona.sh
+cuis_historico_se_integrante.sh
+cuis_historico_se_vivienda.sh
+cuis_historico_vivienda.sh
+sifode_universos.sh
