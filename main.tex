@@ -25,6 +25,34 @@
 
 \begin{document}
 
+\colorlet{punct}{red!60!black}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+  }
 %% Enter the deliverable information  in this document (tittle.tex)
 \input{title}
 
@@ -55,7 +83,7 @@
 % Chapter
 % ------------------------
 
-\clearscrheadfoot 
+\clearscrheadfoot
 
 % uncomment for book mode
 %\lofoot{\footerlogo}
@@ -89,8 +117,9 @@
 \pagestyle{scrheadings}
 
 \input{chapters/introduction}
-\input{chapters/chapter-XXX}
-\input{chapters/conclusions}
+\input{chapters/fuentes}
+\input{chapters/ingesta}
+% \input{chapters/conclusions}
 
 \bibliography{bib/references}
 \appendix
