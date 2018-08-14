@@ -4,10 +4,10 @@
 # CUAPS: criterion-level
 ########################
 
-# Este script ingesta los datos del CUAPS (Cuestionario Único de Aplicación a Programas)  a nivel acriterio de focalización. Los apoyos de cada programa pueden tener distintas combinaciones de criterios de focalización.
+# Este script ingesta los datos del CUAPS (Cuestionario Unico de Aplicacion a Programas)  a nivel acriterio de focalizacion. Los apoyos de cada programa pueden tener distintas combinaciones de criterios de focalizacion.
 # El script asume que se tiene acceso a la carpeta sifode-raw, en el S3 del proyecto
 
-# Se toman como parámetros, en ese orden, el data day, el directorio de ingesta y el output path.
+# Se toman como parametros, en ese orden, el data day, el directorio de ingesta y el output path.
 
 period=$1
 local_path=$2

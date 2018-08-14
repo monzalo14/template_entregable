@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 ####################################
-# CUIS Histórico: Personas
+# CUIS Historico: Personas
 ####################################
 
-# Este script descarga los datos de Personas del CUIS Histórico (Cuestionario Único de Información Socioeconómica)
+# Este script descarga los datos de Personas del CUIS Historico (Cuestionario Unico de Informacion Socioeconomica)
 # Se asume que se tiene acceso a la carpeta sedesol-lab, en el S3 del proyecto
-# Se toman como parámetros, en ese orden, el data date, el directorio de ingesta y el output path
+# Se toman como parametros, en ese orden, el data date, el directorio de ingesta y el output path
 
 echo "Downloading Persona data. 
-Source: CUIS Histórico"
+Source: CUIS Historico"
 
 year=$1
 local_path=$2

@@ -1,4 +1,4 @@
-\chapter*{El proceso de ingesta}
+\chapter{El proceso de ingesta}
 \label{chap:ingesta}
 \section*{Infraestructura}
 Como ya hemos explicado, la naturaleza del proyecto implica obtener, procesar, transformar e integrar múltiples fuentes de datos. Con eso en mente, hemos ensamblado una infraestructura orientada a fuentes de datos. Esa infraestructura responde a varias necesidades:
@@ -21,6 +21,9 @@ Para facilitar la actualización periódica de los datos, todo el flujo está or
     \includegraphics[width=\textwidth]{ingest_pipeline.png}
 \end{figure}
 Así, todas nuestras fuentes de datos son ingestadas concatenando el conjunto de datos históricos antes de escribirse a la base de datos. Cada fuente de datos tiene su propio script de ingesta local, escrito ya sea en \textit{bash, python} o \textit{R} que toma como parámetros la fecha del dato, el nombre de la fuente y la ruta de descarga local al servidor.
+\par
+\noindent
+Para tener un registro ordenado de la metadata, utilizamos el estándar DCAT
 \section*{Scripts de ingesta}
-Para ingestar los archivos de CUIS, es necesario utilizar los paquetes \textit{unzip} y \textit{unrar}\ref{unrar_debian, unzip_debian}, que permiten la descompresión de archivos, y \textit{csvkit} \ref{csvkit}, un paquete de \textit{python} con integración a \textit{bash} que permite aplicar distintas transformaciones a datos de tipo CSV, incluyendo la conversión a CSV desde archivos de Excel.
+Para ingestar los archivos de CUIS, es necesario utilizar los paquetes \textit{unzip} y \textit{unrar}\cite{unrar_debian, unzip_debian}, que permiten la descompresión de archivos, y \textit{csvkit} \cite{csvkit}, un paquete de \textit{python} con integración a \textit{bash} que permite aplicar distintas transformaciones a datos de tipo CSV, incluyendo la conversión a CSV desde archivos de Excel.
 Todos los códigos de ingesta están disponibles en el \autoref{chap:apendice}.

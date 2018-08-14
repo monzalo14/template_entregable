@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 ####################################
-# CUIS Histórico: Socioeconómicos de viviendas
+# CUIS Historico: Socioeconomicos de viviendas
 ####################################
 
-# Este script descarga los datos socioeconómicos de viviendas del CUIS Histórico (Cuestionario Único de Información Socioeconómica)
+# Este script descarga los datos socioeconomicos de viviendas del CUIS Historico (Cuestionario Unico de Informacion Socioeconomica)
 # Se asume que se tiene acceso a la carpeta sedesol-lab, en el S3 del proyecto
-# Se toman como parámetros, en ese orden, el data date, el directorio de ingesta y el output path
+# Se toman como parametros, en ese orden, el data date, el directorio de ingesta y el output path
 
-echo "Downloading Socioeconómicos: viviendas data. 
-Source: CUIS Histórico"
+echo "Downloading Socioeconomicos: viviendas data. 
+Source: CUIS Historico"
 
 year=$1
 local_path=$2

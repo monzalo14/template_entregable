@@ -1,0 +1,45 @@
+{
+    "title": "Catalogo de datos publicados por el Laboratorio de Datos de SEDESOL",
+    "description": "Datos relacionados con el desarrollo social o que son usados por el equipo de Ciencia de Datos para analisis. El mantenimiento corre a cargo del mismo equipo.",
+    "homepage": "http://www.plataformapreventiva.gob.mx",
+    "issued": "2018-02-23T00:00:00Z",
+    "modified": "2018-02-23T09:38:45Z",
+    "language": "es",
+    "license": "https://opensource.org/licenses/MIT",
+    "dataset": [
+        {
+            "title": "CUAPS Programas",
+            "description": "Datos del Cuestionario Unico de Aplicacion a Programas, a nivel programa. Contiene informacion administrativa y de diseno del programa",
+            "identifier": "cuaps_programas",
+            "issued": "2017-11-30",
+            "modified": "2018-01-31",
+            "landingPage": "",
+            "publisher": {
+                "name": "Direccion General de Geoestadistica y Padrones de Beneficiarios",
+                "mbox": "carlos.valdes@sedesol.gob.mx"
+            },
+            "distribution": [
+                {
+                    "accessURL": "",
+                    "byteSize": "",
+                    "description": "El buscador de perfiles permitira hacer busquedas especificas por orden de gobierno, derecho social y tipo de apoyo, usando los datos de CUAPS. Los resultados de busqueda estaran disponible para descarga en formato csv.",
+                    "downloadURL": "",
+                    "format": "csv",
+                    "issued": "",
+                    "license": "",
+                    "modified": "",
+                    "title": ""
+                }
+            ],
+            "keyword": [
+                "programas",
+                "desarrollo-sostenible",
+                "cuestionarios"
+            ],
+            "language": [
+                "es"
+            ],
+            "s3Location": "sedesol-lab/CUAPS-PROGRAMAS/BDCUAPS_PROGRAMA_3.xlsx"
+        }
+    ]
+}
