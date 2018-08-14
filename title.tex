@@ -7,7 +7,7 @@
 \newcommand{\MyName}{Mónica Zamudio López}
 \newcommand{\Institution}{Laboratorio de Datos, SEDESOL}
 \newcommand{\DelTitle}{Recolección y limpieza de información}
-\newcommand{\DelNumber}{1}
+\newcommand{\DelNumber}{2}
 \newcommand{\DelVersion}{0.1/1.0}
 \newcommand{\Contrato}{ATN/OC 15822-RG}
 \newcommand{\footertext}{\raisebox{3mm}{Entregable \DelNumber}}
@@ -115,8 +115,8 @@ SEDESOL 2018
     % \Tstrut\Bstrut Editor:& XXX, XXX-Institution\\\hline
     \Tstrut\Bstrut Tipo de Entregable:& Reporte (R) \\\hline
     % \Tstrut\Bstrut Dissemination level:& Public (PU)\\\hline
-    \Tstrut\Bstrut Fecha de Entrega Contractual:& Mayo - 2018\\\hline
-    \Tstrut\Bstrut Fecha de Entrega& 3 de Mayo de 2018\\\hline
+    \Tstrut\Bstrut Fecha de Entrega Contractual:& Agosto - 2018\\\hline
+    \Tstrut\Bstrut Fecha de Entrega& 17 de agosto de 2018\\\hline
     % \Tstrut\Bstrut Suggested Readers:&Project partners, future community-lab.net users\\\hline
     \Tstrut\Bstrut Número de Páginas:&\pageref{finalpg}\\\hline
     \Tstrut\Bstrut Keywords:& estimación ingreso ciencia datos ingesta \\\hline
@@ -131,9 +131,8 @@ SEDESOL 2018
 \end{flushright}
 
 \section*{Resumen}
-La Secretaría de Desarrollo Social (SEDESOL) es una entidad del gobierno mexicano destinada al apoyo de la población para el mejoramiento de sus condiciones de vida.\\
-Un problema importante para SEDESOL es la correcta distribución de sus recursos por lo que es importante contar con una metodología que permita la generación de una focalización correcta para así poder ayudar a aquellos que realmente están en condiciones vulnerables.\\
-En este reporte se detalla el proceso de obtención e integración de distintas fuentes de información que puedes ser de utilidad en dicho proceso, ya sea de manera directa o como auxiliar de las primeras.\\
-Las partes fundamentales para la realización de esto son, el estudio y evaluación de información generada por la misma Secretaría como lo es el Cuestionario Único de Información Socioeconómica (CUIS) y el Sistema de Focalización de Desarrollo (SIFODE), además de datos auxiliares que permitan la georreferenciación como archivos poligonales de carreteras y caminos. Para esto es importante llevar a cabo un sistema semiautomatizado para almacenar de manera adecuada todas las fuentes de datos para su futuro uso así como la información de los orígenes y naturaleza de las mismas.
+Este proyecto nace de la intención de la Secretaría de Desarrollo Social de construir una metodología de focalización más eficiente y así distribuir mejor los recursos de los programas sociales. Para el desarrollo de esta metodología se tomó en cuenta el problema de sub y sobrerreportaje, considerando distintas especificaciones para construir redes bayesianas. Se utilizaron como principales fuentes de datos la Encuesta de Características Socioeconómicas de los Hogares (ENCASEH), su módulo de verificaciones domiciliarias, y los datos de la Encuesta Nacional de Ingreso y Gasto de los Hogares (ENIGH). \\
+Una vez concluído el proceso de obtención e integración de estos datos, se procedió a la exploración y modelado. A la par, se comenzó a desarrollar la infraestructura para que el flujo de datos fuera reproducible hasta esta etapa, y a la vez las poblaciones descritas por los datos fueran lo más comparables posible. \\
+En este documento se detalla parte del desarrollo que permitió el análisis posterior, así como los resultados de ese análisis.
 \clearpage
 
