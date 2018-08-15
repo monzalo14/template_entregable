@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-output_path='/mnt/c/Users/Monica/Desktop/primer_entregable.pdf'
+# Horrible fix for viewing pdf output in a regular PDF Viewer
+output_path='/mnt/c/Users/Monica/Desktop/segundo_entregable.pdf'
 
 pdflatex main.tex
 bibtex main
