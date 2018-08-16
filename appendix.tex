@@ -1,14 +1,37 @@
 \chapter{Apéndice}
 \label{chap:apendice}
-\lstinputlisting[language=bash,basicstyle=\ttfamily\scriptsize,caption={Archivo de ingesta de CUAPS Programas}]{code/cuaps_programas.sh}
-\scriptsize{\textit{Nota: este mismo esquema es utilizado para ingestar todas las tablas del CUAPS}}
+\section*{Limpieza de datos}
+\lstinputlisting[language=python,basicstyle=\ttfamily\scriptsize,caption={Código de orquestación del flujo de datos para la limpieza de variables}]{code/etl_orchestra.py}
 \pagebreak
-\lstinputlisting[language=bash,basicstyle=\ttfamily\scriptsize,caption={Archivo de ingesta de CUIS 39.9}]{code/cuis_39_9.sh}
+\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize,caption={Código principal de limpieza y recodificación de variables}]{code/clean_task.R}
 \pagebreak
-\lstinputlisting[language=bash,basicstyle=\ttfamily\scriptsize,caption={Archivo de ingesta de Cuis Histórico Domicilios}]{code/cuis_historico_domicilios.sh}
-\scriptsize{\textit{Nota: este mismo esquema es utilizado para ingestar todas las tablas del CUIS Histórico}}
+\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize,caption={Archivo de limpieza para la tabla de integrante de CUIS Histórico}]{code/cuis_historico_integrante.R}
 \pagebreak
-\lstinputlisting[language=bash,basicstyle=\ttfamily\scriptsize,caption={Archivo de ingesta de Sifode Universos}]{code/sifode_universos.sh}
+\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize,caption={Archivo de limpieza para la tabla de datos socioeconómicos de los integrantes de CUIS Histórico}]{code/cuis_historico_se_integrante.R}
 \pagebreak
-\lstinputlisting[language=json,basicstyle=\ttfamily\scriptsize,caption={Catálogo de Metadatos},breaklines=true]{code/catalog.json}
-\scriptsize{\textit{Nota: para mayor claridad y legibilidad, se redujo el tamaño del catálogo a la primera entrada.}}
+\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize,caption={Archivo de limpieza para la tabla de viviendas de CUIS Histórico}]{code/cuis_historico_vivienda.R}
+\pagebreak
+\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize,caption={Archivo de limpieza para la tabla de datos socioeconómicos de las viviendas de CUIS Histórico}]{code/cuis_historico_se_vivienda.R}
+\pagebreak
+
+\section*{Recodificación de datos}
+\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize,caption={Archivo de funciones auxiliares de recodificación de datos.}]{code/recode_utils.R}
+\pagebreak
+
+\section*{Creación de nuevas variables}
+\lstinputlisting[language=python,basicstyle=\ttfamily\scriptsize,caption={Código de orquestación del flujo de datos para la creación de nuevas variables}]{code/features_orchestra.py}
+\pagebreak
+\lstinputlisting[language=python,basicstyle=\ttfamily\scriptsize,caption={Archivo auxiliar para definir parámetros adicionales en el flujo de creación de nuevas variables}]{code/luigi_features.cfg}
+\pagebreak
+\lstinputlisting[language=json,basicstyle=\ttfamily\scriptsize,caption={Archivo auxiliar de definición de dependencias para la creación de nuevas variables}]{code/features_dependencies.yaml}
+\pagebreak
+\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize,caption={Archivo de funciones auxiliares para la creación de nuevas variables}]{code/funciones_auxiliares.R}
+\pagebreak
+\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize,caption={Archivo de funciones auxiliares para la definición de objetos parecidos a las tuplas}]{code/pipeline_utils.R}
+\pagebreak
+\lstinputlisting[language=json,basicstyle=\ttfamily\scriptsize,caption={Archivo auxiliar para la creación de variables de carencias a nivel hogar}]{code/carencias.yaml}
+\pagebreak
+\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize,caption={Código de creación de variables de carencias a nivel hogar}]{code/cuis_carencias.R}
+
+
+

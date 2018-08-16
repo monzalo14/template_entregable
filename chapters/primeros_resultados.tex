@@ -1,0 +1,15 @@
+\chapter{Primeros resultados}
+\label{chap:primeros_resultados}
+\section*{Comparación entre poblaciones}
+La primera inquietud a resolver es si los datos de entrenamiento son una muestra suficientemente parecida a los datos para los cuales se van a generar nuevas predicciones. Esta pregunta es relevante porque podrían existir características de las poblaciones atendidas por los programas que hacen verificaciones domiciliarias que no sean compartidas por las poblaciones atendidas por los programas que no las hacen, y si estas inciden en los patrones de sub y sobrerreportaje, la corrección e imputación de variables latentes puede ser incorrecta. Así, comparamos las poblaciones en términos de las variables que podemos observar, compartidas por ambas poblaciones. Como fue mostrado en \cite{lfgp_entregable_1}, parece que las poblaciones son razonablemente parecidas, por lo que podríamos suponer que el conjunto de datos de ENCASEH son un conjunto válido de datos de entrenamiento.
+\section*{Ajuste del modelo}
+La estructura del modelo propuesta parece ser suficientemente parsimoniosa y no afectar el desempeño del modelo.\footnote{Recordar que medimos el desempeño del modelo con la log-verosimilitud promedio para cada posible valor del parámetro de regularización.} Las relaciones entre las variables muestran agrupamientos bastante lógicos en términos teóricos, y la estructura de la gráfica es relativamente simple. Como mencionamos en \autoref{chap:modelos_graficos}, utilizamos solamente dos restricciones para la estructura de la gráfica. Sin embargo, existen variables adicionales a considerar que podrían mejorar el ajuste del modelo para el conjunto de prueba: en la medida en que nuevas variables garanticen independencia condicional entre los nodos de la gráfica, se reduce el número de parámetros a estimar y por ende las posibilidades de sobreajuste.
+\section*{Variables adicionales a considerar}
+La mayor parte de las variables a considerar se pueden obtener a nivel municipal, y expresan condiciones socioeconómicas del municipio en cuestión:
+\begin{itemize}
+    \item \textbf{Indicadores de carencias}: como están definidas por CONEVAL, existen seis carencias socioeconómicas. Se tienen datos a nivel municipal de rezago educativo, inseguridad alimentaria, calidad de los espacios en la vivienda, acceso a servicios en la vivienda, acceso a los servicios de salud y acceso a los servicios de seguridad social.
+    \item \textbf{Distancia a centros de servicio}: algunas de las variables reportadas, como tenencia de distintos enseres, pueden estar correlacionadas con la distancia que hay a centros de servicio y distribución, para lo que los datos georreferenciados a nivel localidad pueden ser útiles en la construcción de nuevas variables.
+    \item \textbf{Información socioeconómica adicional del municipio}: información adicional -disponible en INEGI- para el municipio, como las tasas de pobreza, marginación, y acceso global a distintos servicios pueden ser útiles también para describir los patrones de sub y sobrerreportaje en los cuestionarios.
+\end{itemize}
+
+

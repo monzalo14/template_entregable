@@ -24,4 +24,4 @@ unrar p -inul $local_path/universos_39_9.rar | \
 sed -e 's/\r$// ; s/^\xef\xbb\xbf//' | \
 csvformat -d '^' -D '|' -v > $local_ingest_file
 
-echo 'Written to: '$local_ingest_file
+echo 'Written to: '$local_ingest_file 
