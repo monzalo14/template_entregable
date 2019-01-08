@@ -1,0 +1,19 @@
+\chapter{Modelos gráficos}
+\label{chap:modelos_graficos}
+\section*{Marco de análisis}
+Como mencionado en \cite{lfgp_entregable_1}, el problema de reportaje incorrecto puede tratarse como un problema de datos faltantes, siguiendo el marco de análisis planteado por \cite{missing_data}. Para este caso, utilizamos el módulo de verificaciones domiciliarias de la ENCASEH, el cual asumimos que nos da las verdaderas características de los hogares. Ajustamos entonces una red bayesiana siguiendo el planteamiento de \cite{graphical_models} a la colección de datos que contienen variables reportadas y verificadas. De esta forma, es posible obtener hacer inferencia sobre el ingreso de los hogares para cualquier estimación de ingreso que se proponga, a la vez que se logra capturar la correlación entre las variables verificadas y las reportadas, mejorando la incertidumbre.
+
+\section*{Algunas consideraciones importantes}
+A pesar de que todos los programas utilizan el CUIS como insumo base para sus levantamientos socioeconómicos, estos pueden ser complementados con módulos de preguntas adicionales. Actualmente, los programas sociales operan de una forma relativamente independiente, sin demasiados mecanismos de coordinación en términos de las características de estos levantamientos. Así, es importante asegurarse de que la población de los cuestionarios que sí cuentan con un módulo de verificación sea comparable con la población de los cuestionarios que no, y por ende el modelo no va a tener sesgos sistemáticos que impidan hacer inferencia de forma correcta.
+\par
+\noindent
+Por otro lado, existen muchas estructuras gráficas distintas que podrían ajustar correctamente la distribución conjunta observada en los datos, pero algunas de ellas pueden ser significativamente más complejas que otras. En la medida de lo posible, es importante buscar estructuras que no tengan contradicciones teóricas importantes, y partir de un modelo parsimonioso para evitar el sobreajuste. Tomando eso en cuenta, se utilizó un parámetro de regularización relativamente bajo ($k=20$), y dos restricciones a la estructura de la gráfica:
+\begin{itemize}
+    \item Si hay una arista entre una variable reportada y una verificada, la consecuente debe de ser la reportada.
+    \item No pueden existir aristas entre variables reportadas.
+\end{itemize}
+Un segundo recurso que se puede utilizar para simplificar la estructura de la gráfica es la construcción y agregación de nuevas variables que garanticen independencia condicional entre los distintos nodos. Con ese propósito, construimos un flujo de datos dedicado a incorporar variables a nivel municipal de forma estandarizada y escalable, que explicamos con mayor detalle en \autoref{chap:etl}
+\par
+\noindent
+Por último, sabemos que este análisis está pensado para ser utilizado en la aplicación de los cuestionarios en tiempo real, por lo que debe de ser completamente replicable y portable entre distintos dispositivos. Estas consideraciones nos llevan a pensar que debemos utilizar un ambiente contenido con la menor cantidad posible de dependencias, por lo que debemos construir una imagen a partir de la cual puedan levantarse contenedores que ejecuten el proceso de predicción.\footnote{Para mayor referencia sobre estas consideraciones de infraestructura, ver \cite{docker}}
+

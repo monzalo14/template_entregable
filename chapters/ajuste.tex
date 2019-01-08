@@ -1,0 +1,15 @@
+\chapter{Consideraciones finales para ajustar el modelo}
+\label{chap:ajuste}
+\section*{El modelo: recapitulación y avances}
+\subsection*{Fuentes de datos}
+Como se mencionó en \cite{mzl_entregable_2}, la fuente principal de datos para el ajuste del modelo fue la Encuesta de Características Socioeconómicas de los Hogares, o ENCASEH. Esta encuesta contiene los módulos definidos en el CUIS como base, y puede ser complementada con módulos adicionales de preguntas que se consideren necesarias para la focalización, según el objetivo del programa en cuestión. Para nosotros fue de particular interés utilizar los datos de PROSPERA, que incluyen el módulo de verificaciones domiciliarias. Así, podemos considerar el problema de reportaje incorrecto como un problema de datos faltantes según el marco de análisis planteado por /cite{missing_data}, utilizando el módulo de verificaciones domiciliarias como etiquetas\footnote{Aquí queda implícito el primer supuesto importante que hacemos en la modelación: que no hay error en las verificaciones. Es decir, que las variables verificadas siempre reflejan las verdaderas características de los hogares.}. La idea del enfoque de datos faltantes es entonces explotar la distribución conjunta entre las respuestas a los cuestionarios y las variables verificadas para poder imputar datos dado un conjunto de evidencia.
+\par
+\noindent
+Ahora, es plausible pensar que la distribución de las características de los hogares cambie conforme nos encontremos en municipios con distintos perfiles de carencias o marginación. Eso nos llevó a incluir una segunda fuente de en el modelo: los datos de marginación a nivel municipal, publicados por el CONAPO. Estos datos consisten en un índice de marginación, que es esencialmente la primera componente resultante de aplicar el método de componentes principales a este conjunto de variables:
+\begin{itemize}
+    \item
+\end{itemize}
+\subsection*{El problema de datos faltantes}
+\section*{El método}
+\subsection*{El algoritmo}
+\subsection*{Parámetros relevantes}
