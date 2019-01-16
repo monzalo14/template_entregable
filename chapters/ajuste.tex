@@ -5,11 +5,40 @@
 Como se mencionó en \cite{mzl_entregable_2}, la fuente principal de datos para el ajuste del modelo fue la Encuesta de Características Socioeconómicas de los Hogares, o ENCASEH. Esta encuesta contiene los módulos definidos en el CUIS como base, y puede ser complementada con módulos adicionales de preguntas que se consideren necesarias para la focalización, según el objetivo del programa en cuestión. Para nosotros fue de particular interés utilizar los datos de PROSPERA, que incluyen el módulo de verificaciones domiciliarias. Así, podemos considerar el problema de reportaje incorrecto como un problema de datos faltantes según el marco de análisis planteado por /cite{missing_data}, utilizando el módulo de verificaciones domiciliarias como etiquetas\footnote{Aquí queda implícito el primer supuesto importante que hacemos en la modelación: que no hay error en las verificaciones. Es decir, que las variables verificadas siempre reflejan las verdaderas características de los hogares.}. La idea del enfoque de datos faltantes es entonces explotar la distribución conjunta entre las respuestas a los cuestionarios y las variables verificadas para poder imputar datos dado un conjunto de evidencia.
 \par
 \noindent
-Ahora, es plausible pensar que la distribución de las características de los hogares cambie conforme nos encontremos en municipios con distintos perfiles de carencias o marginación. Eso nos llevó a incluir una segunda fuente de en el modelo: los datos de marginación a nivel municipal, publicados por el CONAPO. Estos datos consisten en un índice de marginación, que es esencialmente la primera componente resultante de aplicar el método de componentes principales a este conjunto de variables:
+Ahora, es plausible pensar que la distribución de las características de los hogares cambie conforme nos encontremos en municipios con distintos perfiles de carencias o marginación. Eso nos llevó a incluir una segunda fuente de en el modelo: los datos de marginación a nivel municipal, publicados por el CONAPO. Estos datos consisten en un índice de marginación, que es esencialmente la primera componente resultante de aplicar el método de componentes principales a este conjunto de variables\footnote{Todas las variables se miden en porcentaje de la población que satisface la característica mencionada.}:
 \begin{itemize}
-    \item
+    \item Población de 15 años o más analfabeta
+    \item Población de 15 años o más sin primaria terminada
+    \item Viviendas particulares habitadas sin drenaje ni servicio sanitario
+    \item Viviendas particulares habitadas sin energía eléctrica
+    \item Viviendas particulares habitadas sin agua entubada
+    \item Viviendas particulares habitadas con piso de tierra
+    \item Viviendas particulares habitadas con algún nivel de hacinamiento
+    \item Población en localidades con menos de cinco mil habitantes
+    \item Población ocupada con ingreso de hasta dos salarios mínimos
 \end{itemize}
-\subsection*{El problema de datos faltantes}
+Dado que los levantamientos contienen referencias al domicilio en el que se encuentra la vivienda, podemos utilizar esa información para filtrar en tiempo real los valores correspondientes al municipio que contiene a ese domicilio. Sin embargo, utilizar dos conjuntos distintos de variables (el conjunto con las variables a nivel municipio y el conjunto original) añade ciertas dificultades para la comparación entre modelos, de las que hablaremos más adelante.
+\subsection*{El proceso de modelado}
+Recordemos que estamos ajustando una red bayesiana a los datos. Una red bayesiana en un grupo de variables $V = (X_1, X_2, \dots, X_n)$ es una gráfica dirigida G, con $V$ como su conjunto de vértices. La gráfica $G$ representa las distribuciones cuya conjunta se puede escribir como $p(x_1, x_2, \dots, x_n) = \prod_{i=1}^{n}p(x_i|pa(x_i))$, donde $pa(x_i)$ es el conjunto de variables que son padres de $x_i$ en la gráfica $G$.
+\par
+\noindent
+Notemos cómo esta definición induce una propiedad de Markov en la red bayesiana: los nodos representan variables aleatorias y las aristas relaciones de probabilidad, por lo que la estructura de la red define una factorización de la función de distribución conjunta en un conjunto de distribuciones \textit{locales} de probabilidad, una para cada variable\footnote{Para más detalle sobre esto, ver \cite{bayesian_networks}.}. Debido a la correspondencia entre independencia condicional y separación gráfica, es posible aprender primero la estructura de la gráfica, y dada una estructura, estimar las distribuciones locales una por una, sin las complicaciones inducidas por la dimensionalidad de los datos.
 \section*{El método}
+Independientemente del algoritmo que se escoja para encontrar la estructura de la gráfica, el método convencional para ajustar una red bayesiana a un conjunto de datos es el siguiente:
+\begin{enumerate}
+    \item Aprender la estructura de la gráfica a través de un algoritmo apropiado.
+    \item Estimar los parámetros de las distribuciones locales para cada nodo, utilizando una distribución multinomial para variables categóricas y una distribución normal multivariada para variables continuas\footnote{En este caso, los modelos son mayormente conocidos como Redes Bayesianas \textit{Gaussianas}, y las variables aleatorias se relacionan entre sí a partir de restricciones lineales.}
+\end{enumerate}
 \subsection*{El algoritmo}
+Para ajustar la red bayesiana en R, escogimos el paquete \texttt{bnlearn}: un paquete que incluye distintos tipos de algoritmos para el aprendizaje de la estructura, con un conjunto bastante grande de métricas de evaluación a escoger.
+\par
+\noindent
+Los algoritmos que aprenden la estructura de una gráfica se dividen en dos grandes categorías: basados en restricciones y basados en puntuación (constraint-based y score-based, respectivamente). Hasta ahora, no existe evidencia concluyente que apunte a la superioridad de algún tipo sobre el otro (ver \cite{algorithm_comparison}), por lo que decidimos utilizar \texttt{hill climbing}: un algoritmo \textit{greedy} basado en puntuación que pertenece a la familia de algoritmos de búsqueda local.
 \subsection*{Parámetros relevantes}
+Por su naturaleza, el algoritmo permite especificar ciertos parámetros de búsqueda que pueden ser optimizados para obtener mejores resultados:
+\begin{itemize}
+    \item \textbf{blacklist/whitelist}: conjunto de aristas a excluir/incluir del modelo. En cualquiera de los dos casos, especificar este conjunto permite que el algoritmo descarte estructuras irrelevantes. En nuestro caso, descartamos todas las aristas de variables reportadas a variables verificadas, y también todas las aristas hacia variables a nivel municipal que no partieran de otra variable a nivel municipal.
+    \item \textbf{score}: la medida de ''bondad de ajuste'' a ser utilizada para la evaluación de las posibles estructuras. Existen muchas medidas posibles de evaluación, pero todas tienen que asignar el mismo puntaje a las estructuras que tengan asociada la misma distribución de probabilidad conjunta. En este caso, se utilizó siempre el AIC, o Criterio de Información de Akaike.
+    \item \textbf{restarts}: número de ''recomienzos'' que hace el algoritmo para evitar caer en un mínimo local.
+    \item \textbf{k}: coeficiente de penalización por el número de parámetros estimados. Es importante incluir algún grado de penalización para prevenir el sobreajuste.
+\end{itemize}
