@@ -33,13 +33,20 @@ Utilizando la métrica propuesta, comparamos cada uno de los modelos para escoge
 Una vez que escogimos la mejor estructura posible dado un conjunto de variables, es necesario construir el clasificador que mencionamos anteriormente. Necesitamos entonces hacer inferencia probabilística para obtener un estadístico que nos ayude con la tarea de clasificación.
 \par
 \noindent
-Existen varios métodos de inferencia para Redes Bayesianas. Nosotros consideramos dos métodos de inferencia:
-\begin{enumerate}
-    \item
-\end{enumerate}
-
-Entonces, lo que hacemos es revisar cómo le va a distintos cortes de la suma de probabilidades y así construir un clasificador discreto. Por lo tanto, tiene sentido evaluarlo con funciones como la curva ROC y el AUC.
-\subsection*{Métodos de imputación}
-\subsection*{Proceso de clasificación}
-Definir la curva ROC y el AUC. Explicar cómo se calcula en un contexto como este, con polinomios de Newton.
-
+Existen varios algoritmos para hacer inferencia en Redes Bayesianas. Nosotros consideramos dos: \textit{logic sampling} -parte de la familia de técnicas de muestreo por importancia- y \textit{belief propagation}, un algoritmo de paso de mensaje. La ventaja del segundo sobre el primero es que permite el cálculo de las distribuciones marginales de manera más eficiente. Además, las técnicas de muestreo por importancia pueden llevar a descartar buena parte de los elementos de la muestra, resultando así en un tiempo mayor de convergencia. Sin embargo, los algoritmos de muestreo por importancia que están implementados en R tienen menos carga de dependencias, lo cual puede resultar útil en la implementación como explicaremos más adelante.
+\par
+\noindent
+Una vez que calculamos la distribución posterior de las variables ''verdaderas'' dadas las respuestas al cuestionario, podemos hacer una comparación simple y construir un estadístico que podamos interpretar como la probabilidad de tener algún incorrecto. Para esto, lo que hicimos fue restar las probabilidades de las respuestas (codificadas como variables binarias) y sumar esas diferencias. Una vez obtenida la suma, comparamos varios puntos de corte para construir un clasificador binario, y evaluamos el clasificador utilizando el área bajo la curva ROC.
+\par
+\noindent
+La curva ROC (Receiver Operating Characteristic, por su origen naval) es una herramienta para evaluar la capacidad de un clasificador binario de discriminar conforme va variando el umbral de clasificación. Esta curva resulta de graficar la Tasa de Falsos Positivos (TFP) en el eje x, y la tasa de verdaderos positivos (TVP) en el eje Y. Estas dos métricas se definen como sigue:
+\begin{align*}
+    TFP := \frac{FP}{N} \\
+    TVP := \frac{VP}{P}
+\end{align*}
+Donde $(F,V)$ son Falso y Verdadero, y $(N,P)$ son Negativo y Positivo, respectivamente. Cabe mencionar que a la TVP comúnmente se le llama \textit{sensitividad}, y que la TFP puede reescribirse como $1-TVN$, donde $TVN$ también es conocida como \textit{especificidad}. Ambas métricas son relativamente estándar en el campo de la ciencia de datos, y compararlas gráficamente tiene la intención de tomar en cuenta el intercambio que se hace entre falsos positivos y falsos negativos en la construcción de un clasificador.
+\par
+\noindent
+% Incluir imagen de la curva ROC
+Dado que nuestra colección de puntos no constituye una partición regular del dominio para la curva ROC, utilizamos técnicas de integración numérica como la Regla de Cuadratura de Gauss y la Regla del Trapecio para particiones irregulares.
+% Incluir tabla de clasificadores
