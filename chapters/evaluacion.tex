@@ -3,18 +3,21 @@
 Recordemos que el problema que buscamos resolver a través de este modelo es el de priorizar correctamente las verificaciones domiciliarias, reduciendo así la proporción de hogares que son sujetos a un proceso de focalización incorrecta. Dada la deriva temporal a la que está sujeto el proceso de focalización -los programas que operan en cierta región, así como los criterios que utilizan para focalizar, están cambiando constantemente- simplificamos el problema al definir que nuestro objetivo es, simplemente, asignar correctamente las verificaciones. Definimos como una verificación correctamente asignada a aquella en la que se tuvo que corregir el valor de al menos una variable. Así, podemos utilizar la distribución posterior resultante de nuestro modelo bayesiano para definir un clasificador que indique una verificación a realizar en caso de que haya una probabilidad de tener cambios suficientemente alta.
 \par
 \noindent
+\\
 Podemos entonces comparar entre conjuntos de variables como comparamos entre clasificadores. Sin embargo, dado un conjunto de variables, necesitamos escoger el valor de $k$ que resulte en la estructura más adecuada. Definimos entonces nuestro proceso de evaluación de modelos en dos pasos.
 \section*{Comparación de estructuras}
 Lo primero que necesitamos asegurar es que, dado un conjunto de variables, tenemos la mejor estructura posible que el algoritmo sea capaz de encontrar. Necesitamos escoger entonces una medida de bondad de ajuste para la distribución conjunta inducida por la estructura de la gráfica.
 \par
 \noindent
-Dado que escogimos un modelo bayesiano, resulta natural pensar en la verosimilitud -o alguna transformación monótona de esa función- para evaluar modelos. En nuestro caso, decidimos utilizar la devianza de prueba por la facilidad de interpretarla de forma análoga a la suma de cuadrados residuales, en el caso de regresión lineal por mínimos cuadrados\foonote{Es decir, que una devianza de validación en el modelo "perfecto" o saturado es igual a cero, y la devianza de validación incrementa conforme el ajuste del modelo empeora}. La devianza de prueba para un modelo $M_0$, que estima $\hat{\mu} := E[Y|\hat{\theta}_0]$ basada en las observaciones $y$ está definida por:
+\\
+Dado que escogimos un modelo bayesiano, resulta natural pensar en la verosimilitud -o alguna transformación monótona de esa función- para evaluar modelos. En nuestro caso, decidimos utilizar la devianza de prueba por la facilidad de interpretarla de forma análoga a la suma de cuadrados residuales, en el caso de regresión lineal por mínimos cuadrados\footnote{Es decir, que una devianza de validación en el modelo "perfecto" o saturado es igual a cero, y la devianza de validación incrementa conforme el ajuste del modelo empeora}. La devianza de prueba para un modelo $M_0$, que estima $\hat{\mu} := E[Y|\hat{\theta}_0]$ basada en las observaciones $y$ está definida por:
 \begin{align*}
 D(y, \hat{\mu}) &= 2(log(p(y|\hat{\theta}_s)) - log(p(y|\hat{\theta}_0)))
 \end{align*}
 Donde $\hat{\theta}_0$ denota los valores de los parámetros del modelo a evaluar $M_0$, y $\hat{\theta}_s$ denota los valores de los parámetros del modelo \textbf{saturado}. Esta métrica nos permite, dado un conjunto de variables, escoger el valor de $k$ que nos dé la mejor estructura posible para minimizar la devianza.
 \par
 \noindent
+\\
 Después de un poco de exploración con las restricciones, decidimos considerar los siguientes seis modelos:
 \begin{enumerate}
 \item \textbf{Modelo sin restricciones}: modelo que incluye solamente las variables reportadas y verificadas, sin ninguna restricción para el algoritmo de búsqueda de estructura.
@@ -27,18 +30,21 @@ Después de un poco de exploración con las restricciones, decidimos considerar 
 Utilizando la métrica propuesta, comparamos cada uno de los modelos para escoger el mejor valor del parámetro de regularización. Los resultados preliminares son los siguientes:
 \begin{figure}[h]
     \caption{Devianza de validación para todos los modelos considerados. Dado que la razón de verosimilitud tiene un denominador distinto (estamos considerando distintos conjuntos de variables), no es comparable entre gráficas}
-    \includegraphics{devianza_validacion.png}
+    \includegraphics[width=\textwidth]{devianza_validacion.png}
 \end{figure}
 \section*{Comparando distintos conjuntos de variables}
 Una vez que escogimos la mejor estructura posible dado un conjunto de variables, es necesario construir el clasificador que mencionamos anteriormente. Necesitamos entonces hacer inferencia probabilística para obtener un estadístico que nos ayude con la tarea de clasificación.
 \par
 \noindent
+\\
 Existen varios algoritmos para hacer inferencia en Redes Bayesianas. Nosotros consideramos dos: \textit{logic sampling} -parte de la familia de técnicas de muestreo por importancia- y \textit{belief propagation}, un algoritmo de paso de mensaje. La ventaja del segundo sobre el primero es que permite el cálculo de las distribuciones marginales de manera más eficiente. Además, las técnicas de muestreo por importancia pueden llevar a descartar buena parte de los elementos de la muestra, resultando así en un tiempo mayor de convergencia. Sin embargo, los algoritmos de muestreo por importancia que están implementados en R tienen menos carga de dependencias, lo cual puede resultar útil en la implementación como explicaremos más adelante.
 \par
 \noindent
+\\
 Una vez que calculamos la distribución posterior de las variables ''verdaderas'' dadas las respuestas al cuestionario, podemos hacer una comparación simple y construir un estadístico que podamos interpretar como la probabilidad de tener algún incorrecto. Para esto, lo que hicimos fue restar las probabilidades de las respuestas (codificadas como variables binarias) y sumar esas diferencias. Una vez obtenida la suma, comparamos varios puntos de corte para construir un clasificador binario, y evaluamos el clasificador utilizando el área bajo la curva ROC.
 \par
 \noindent
+\\
 La curva ROC (Receiver Operating Characteristic, por su origen naval) es una herramienta para evaluar la capacidad de un clasificador binario de discriminar conforme va variando el umbral de clasificación. Esta curva resulta de graficar la Tasa de Falsos Positivos (TFP) en el eje x, y la tasa de verdaderos positivos (TVP) en el eje Y. Estas dos métricas se definen como sigue:
 \begin{align*}
     TFP := \frac{FP}{N} \\
@@ -47,6 +53,7 @@ La curva ROC (Receiver Operating Characteristic, por su origen naval) es una her
 Donde $(F,V)$ son Falso y Verdadero, y $(N,P)$ son Negativo y Positivo, respectivamente. Cabe mencionar que a la TVP comúnmente se le llama \textit{sensitividad}, y que la TFP puede reescribirse como $1-TVN$, donde $TVN$ también es conocida como \textit{especificidad}. Ambas métricas son relativamente estándar en el campo de la ciencia de datos, y compararlas gráficamente tiene la intención de tomar en cuenta el intercambio que se hace entre falsos positivos y falsos negativos en la construcción de un clasificador.
 \par
 \noindent
+\\
 % Incluir imagen de la curva ROC
 Dado que nuestra colección de puntos no constituye una partición regular del dominio para la curva ROC, utilizamos técnicas de integración numérica como la Regla de Cuadratura de Gauss y la Regla del Trapecio para particiones irregulares.
 % Incluir tabla de clasificadores
