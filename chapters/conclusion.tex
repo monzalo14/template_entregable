@@ -1,0 +1,9 @@
+\chapter{Conclusión}
+\label{chap:conclusion}
+En este proyecto se planteó el problema del reportaje incorrecto como un problema de datos faltantes, modelado a partir de redes bayesianas. Para esto, se tomaron en cuenta dos conjuntos de variables: las variables de los cuestionarios ENCASEH, aplicados por el programa PROSPERA, y las variables que componen el índice de marginación de CONAPO, discretizadas de acuerdo a una partición heurística.
+\par
+\noindent
+Se consideraron distintos conjuntos de variables en el modelado, evaluando primero la estructura resultante a través de la devianza de validación, y después construyendo un clasificador a partir de la distribución a posteriori para las variables verificadas. El clasificador fue evaluado con el área bajo la curva ROC.
+\par
+\noindent
+Una vez elegida la especificación para el modelo, se construyó el código que recibe las respuestas por parte del aplicativo móvil, calcula la distribución a posteriori de las variables dada la evidencia y genera la clasificación que indica si hay o no que verificar ese cuestionario. En el caso de la implementación de este piloto, se decidió verificar todas las observaciones para fines del reentrenamiento del modelo.

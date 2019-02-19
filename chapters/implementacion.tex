@@ -1,6 +1,6 @@
 \chapter{Implementación en el piloto}
 \label{chap:implementacion}
-\section*{La infraestructura de la App CUIS}
-\subsection*{Infraestructura}
-\subsection*{Disposición de información}
-\section*{Requerimientos de infraestructura}
+Dados los requerimientos de la arquitectura a nivel aplicación (ver \cite{ec_entregable_2}), buscamos que el modelo sea capaz de calcular la distribución a posteriori con una latencia muy baja y de forma independiente a su ubicación en red. Dentro de los dos algoritmos considerados para la inferencia que se mencionaron anteriormente, el que genera menor latencia es el de propagación de creencias (belief propagation). Sin embargo, este tiene una carga de dependencias considerable que presentan potenciales retos de compilación. La latencia de los algoritmos de muestreo es suficientemente baja, por lo que el modelo se implementó en los dispositivos móviles con logic sampling.
+\par
+\noindent
+Como se explica también en \cite{ec_entregable_2}, el aplicativo móvil guarda los datos de entrada en un archivo CSV, que es leído por el script de R que carga el binario del modelo, calcula la suma de probabilidades de incorrectos a posteriori y manda al STDOUT una variable binaria que indica si es o no necesaria una verificación. Para fines de reentrenamiento del modelo, todos los cuestionarios serán verificados en este piloto.

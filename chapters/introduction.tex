@@ -1,2 +1,12 @@
 \chapter{Introducción}
 \label{chap:intro}
+Este proyecto tenía como objetivo principal corregir el reportaje incorrecto (sub y sobrerreportaje de variables) en los levantamientos socieconómicos. El mecanismo principal de corrección son las verificaciones domiciliarias, por lo que el proceso de análisis aquí descrito busca en primera instancia priorizar estas verificaciones, tomando en cuenta que verificar añade un costo importante al costo total del cuestionario.
+\par
+\noindent
+Dado que contamos con datos de programas como PROSPERA, que verifican el 100\% de sus cuestionarios, podemos utilizar las respuestas verificadas y abordar el problema como un problema de datos faltantes, modelado con Redes Bayesianas. A partir de la estructura obtenida para la gráfica, construimos un clasificador para transformar el resultado de un modelo probabilístico en un clasificador binario para detonar una verificación.
+\par
+\noindent
+Este clasificador fue una adición al aplicativo CUIS APP, utilizado para los levantamientos socioeconómicos, lo cual implicó reproducir el modelo en un dispositivo móvil de una forma que fuera independiente a su estatus de conectividad a internet.
+\par
+\noindent
+En este reporte se detallan los resultados finales del análisis y modelado, así como la parte del proceso de implementación implementada en R.
